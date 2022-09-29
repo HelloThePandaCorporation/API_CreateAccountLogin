@@ -7,17 +7,17 @@ using System.Threading.Tasks;
 
 namespace DTS_API.Models
 {
-    public class Karyawan
+    public class UserRole
     {
         [Key]
         public int id { get; set; }
-        public string name { get; set; }
-        public string address { get; set; }
-        public bool gender { get; set; }
-
-        public Salary Salary { get; set; }
-        [ForeignKey("Salary")]
-        public int SalaryId { get; set; }
-
+        public User user { get; set; }
+        [ForeignKey("User")]
+        public int UserId { get; set; }
+        
+        public Role role { get; set; }
+        [ForeignKey("Role")]
+        public int RoleId { get; set; }
+        
     }
 }

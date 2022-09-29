@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DTC_CRUD_MVC
+namespace DTS_API
 {
     public class Program
     {

@@ -12,32 +12,20 @@ namespace DTS_API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class KaryawanController : ControllerBase
+    public class LateController : ControllerBase
     {
-        KaryawanRepository karyawanRepository;
+        LateRepository lateRepository;
 
-        public KaryawanController(KaryawanRepository karyawanRepository)
+        public LateController(LateRepository lateRepository)
         {
-            this.karyawanRepository = karyawanRepository;
+            this.lateRepository = lateRepository;
         }
 
         //READ
         [HttpGet]
         public IActionResult Get()
         {
-            var data = karyawanRepository.Get();
-            if (data == null)
-            {
-                return Ok(new { message = "Sukses mengambil data",
-                    StatusCode = 200, data = "null" });
-            }
-            return Ok(new { message = "Sukses Mengambil data",
-                statusCode = 200, data = data });
-        }
-        [HttpGet("{id}")]
-        public IActionResult Get(int id)
-        {
-            var data = karyawanRepository.Get(id);
+            var data = lateRepository.Get();
             if (data == null)
             {
                 return Ok(new
@@ -55,16 +43,37 @@ namespace DTS_API.Controllers
             });
         }
         //UPDATE
-        [HttpPut]
-
-        public IActionResult Put(Karyawan karyawan)
+        [HttpGet("{id}")]
+        public IActionResult Get(int id)
         {
-
-            var result = karyawanRepository.Put(karyawan);
+            var data = lateRepository.Get(id);
+            if (data == null)
+            {
+                return Ok(new
+                {
+                    message = "Sukses mengambil data",
+                    StatusCode = 200,
+                    data = "null"
+                });
+            }
+            return Ok(new
+            {
+                message = "Sukses Mengambil data",
+                statusCode = 200,
+                data = data
+            });
+        }
+        [HttpPut]
+        public IActionResult Put(Late late)
+        {
+            var result = lateRepository.Put(late);
             if (result > 0)
             {
-                return Ok(new { StatusCode = 200, 
-                    message = "berhasil mengubah data" });
+                return Ok(new
+                {
+                    StatusCode = 200,
+                    message = "berhasil mengubah data"
+                });
             }
             return BadRequest(new
             {
@@ -75,10 +84,9 @@ namespace DTS_API.Controllers
         //CREATE
         [HttpPost]
 
-        public IActionResult Post(Karyawan karyawan)
+        public IActionResult Post(Late late)
         {
-            var result = karyawanRepository.Post(karyawan);
-
+            var result = lateRepository.Post(late);
             if (result > 0)
             {
                 return Ok(new
@@ -98,7 +106,7 @@ namespace DTS_API.Controllers
 
         public IActionResult Delete(int id)
         {
-            var result = karyawanRepository.Delete(id);
+            var result = lateRepository.Delete(id);
             if (result > 0)
             {
                 return Ok(new

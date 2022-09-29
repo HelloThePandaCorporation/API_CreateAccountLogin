@@ -1,11 +1,11 @@
-﻿using DTC_CRUD_MVC.Models;
+﻿using DTS_API.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DTC_CRUD_MVC.Context
+namespace DTS_API.Context
 {
     public class MyContext : DbContext
     {
@@ -18,6 +18,9 @@ namespace DTC_CRUD_MVC.Context
         public DbSet<Karyawan> Karyawans { get; set; }
         public DbSet<Salary> Salaries { get; set; }
         public DbSet<Late> Lates { get; set; }
-
+        public DbSet<Employee> employees { get; set; }
+        public DbSet<User> users { get; set; }
+        public DbSet<UserRole> userRoles { get; set; }
+        public DbSet<Role> roles { get; set; }
     }
 }

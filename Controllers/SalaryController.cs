@@ -12,32 +12,40 @@ namespace DTS_API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class KaryawanController : ControllerBase
+    public class SalaryController : ControllerBase
     {
-        KaryawanRepository karyawanRepository;
+        SalaryRepository salaryRepository;
 
-        public KaryawanController(KaryawanRepository karyawanRepository)
+        public SalaryController(SalaryRepository salaryRepository)
         {
-            this.karyawanRepository = karyawanRepository;
+            this.salaryRepository = salaryRepository;
         }
 
         //READ
         [HttpGet]
         public IActionResult Get()
         {
-            var data = karyawanRepository.Get();
+            var data = salaryRepository.Get();
             if (data == null)
             {
-                return Ok(new { message = "Sukses mengambil data",
-                    StatusCode = 200, data = "null" });
+                return Ok(new
+                {
+                    message = "Sukses mengambil data",
+                    StatusCode = 200,
+                    data = "null"
+                });
             }
-            return Ok(new { message = "Sukses Mengambil data",
-                statusCode = 200, data = data });
+            return Ok(new
+            {
+                message = "Sukses Mengambil data",
+                statusCode = 200,
+                data = data
+            });
         }
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            var data = karyawanRepository.Get(id);
+            var data = salaryRepository.Get(id);
             if (data == null)
             {
                 return Ok(new
@@ -57,14 +65,16 @@ namespace DTS_API.Controllers
         //UPDATE
         [HttpPut]
 
-        public IActionResult Put(Karyawan karyawan)
+        public IActionResult Put(Salary salary)
         {
-
-            var result = karyawanRepository.Put(karyawan);
+            var result = salaryRepository.Put(salary);
             if (result > 0)
             {
-                return Ok(new { StatusCode = 200, 
-                    message = "berhasil mengubah data" });
+                return Ok(new
+                {
+                    StatusCode = 200,
+                    message = "berhasil mengubah data"
+                });
             }
             return BadRequest(new
             {
@@ -75,10 +85,9 @@ namespace DTS_API.Controllers
         //CREATE
         [HttpPost]
 
-        public IActionResult Post(Karyawan karyawan)
+        public IActionResult Post(Salary salary)
         {
-            var result = karyawanRepository.Post(karyawan);
-
+            var result = salaryRepository.Post(salary);
             if (result > 0)
             {
                 return Ok(new
@@ -96,9 +105,9 @@ namespace DTS_API.Controllers
         //DELETE
         [HttpDelete("{id}")]
 
-        public IActionResult Delete(int id)
+        public IActionResult Delete(int SalaryId)
         {
-            var result = karyawanRepository.Delete(id);
+            var result = salaryRepository.Delete(SalaryId);
             if (result > 0)
             {
                 return Ok(new
